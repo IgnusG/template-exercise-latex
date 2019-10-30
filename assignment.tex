@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}
+
+\usepackage{lipsum} % EXAMPLE only
+
+\usepackage{amsmath} % Math
+\usepackage[normalem]{ulem} % Strike-through Text
+\usepackage{graphicx} % Images
+\usepackage{titlesec} % Title Configuration
+
+\graphicspath{ {./images/} }
+
+% Command to strike-through text in math equations
+\newcommand{\cross}[1]{\text{\sout{\ensuremath{#1}}}}
+% Adjust the format of subsection (#. )
+\renewcommand{\thesubsection}{\arabic{subsection}.\hspace{0.2em}}
+% Change subsub sections numbering to alphabetical (a))
+\renewcommand{\thesubsubsection}{\thesubsection\alph{subsubsection})}
+% Configure sub and subsub sections to display inline
+\setcounter{secnumdepth}{3}
+\titleformat{\subsection}[runin]
+  {\normalfont\normalsize\bfseries}{\thesubsection}{0em}{}
+\titleformat{\subsubsection}[runin]
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{0.5em}{}
+% Create new commands to reference exercises
+\newcommand{\exercise}{\subsection{}\setcounter{subsubsection}{0}}
+\newcommand{\multipartexercise}{\addtocounter{subsection}{1}\setcounter{subsubsection}{0}}
+\newcommand{\exercisepart}{\subsubsection{}}
+
+\title{Assignment}
+\author{Author}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Section/Chapter/Part Name if Required}
+% Example of multipart exercise
+% Every \multipartexercise starts a new exercise formatted as 1. 2. 3. ...
+% Every \exercisepart adds a new sub-exercise for the last multipart exercise 1. a) 1. b) 1. c) ...
+\multipartexercise \exercisepart
+\lipsum[1-1] % EXAMPLE only
+
+\begin{align*}
+    a + b &= c \\
+    c &= a + \pi \\
+    \intertext{Explanation in between} \\
+    b &= 42
+\end{align*}
+
+\exercisepart
+\lipsum[2-2] % EXAMPLE only
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{filename}
+    \caption{Image Caption}
+    \label{imagereference}
+\end{figure}
+
+\multipartexercise \exercisepart
+\lipsum[3-3] % EXAMPLE only
+
+% A simple exercise without parts
+\exercise
+\begin{itemize}
+    \begin{minipage}{\textwidth} % Prevents the content being broken up between pages
+    \item Title of Item
+
+    \lipsum[5-5] % EXAMPLE only
+    \end{minipage}
+\end{itemize}
+
+\end{document}
