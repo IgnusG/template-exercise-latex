@@ -2,10 +2,14 @@
 
 \usepackage{lipsum} % EXAMPLE only
 
+% \usepackage[T1]{fontenc} % Encoding for more character support
+% \usepackage[dvipsnames]{xcolor} % Colors
+% \usepackage{enumitem} % More configurable enumerate
 \usepackage{amsmath} % Math
-\usepackage[normalem]{ulem} % Strike-through Text
+% \usepackage[normalem]{ulem} % Strike-through Text
 \usepackage{graphicx} % Images
-\usepackage{titlesec} % Title Configuration
+\usepackage{titlesec} % Title configuration
+% \usepackage{pifont} % More symbols
 
 \graphicspath{ {./images/} }
 
@@ -25,6 +29,9 @@
 \newcommand{\exercise}{\subsection{}\setcounter{subsubsection}{0}}
 \newcommand{\multipartexercise}{\addtocounter{subsection}{1}\setcounter{subsubsection}{0}}
 \newcommand{\exercisepart}{\subsubsection{}}
+
+% Command to strike-through text in math equations
+% \newcommand{\cross}[1]{\text{\sout{\ensuremath{#1}}}}
 
 \title{Assignment}
 \author{Author}
@@ -46,6 +53,15 @@
     \intertext{Explanation in between} \\
     b &= 42
 \end{align*}
+
+\begin{description}[labelwidth=0pt]
+\item[]
+\begin{DispWithArrows*}[format=cr,fleqn,mathindent=0pt]
+    1 + 1 = 2 &
+    \Arrow{Explanation for this step} \\
+    2 + 2 \stackrel{?}{=} 5 &
+\end{DispWithArrows*}
+\end{description}
 
 \exercisepart
 \lipsum[2-2] % EXAMPLE only
@@ -69,5 +85,42 @@
     \lipsum[5-5] % EXAMPLE only
     \end{minipage}
 \end{itemize}
+
+% Example for a hexagon lattice with tikz - EXAMPLE only
+\exercise
+\begin{figure}[!h]
+\centering
+\begin{tikzpicture}[x=15mm,y=8.68mm]
+  % Define colors for tikz 
+  \definecolor{lightblue}{RGB}{173, 216, 230}
+  \definecolor{lightgray}{RGB}{211, 211, 211}
+  % Configure box node to be a hexagon
+  \tikzset{
+    box/.style={
+      regular polygon,
+      regular polygon sides=6,
+      minimum size=20mm,
+      inner sep=0mm,
+      outer sep=0mm,
+      rotate=0,
+    draw
+    }
+  }
+
+% Format at (2*horizontal+offset grid?,2*vertical+offset grid?)
+% Fill with [box,fill=color]
+
+\node[box] at (2*2+1,2*1+1) {1};
+\node[box] at (2*2,2*1) {2};
+\node[box] at (2*3,2*1) {3};
+\node[box] at (2*2+1,2*0+1) {4};
+\node[box] at (2*2,2*0) {5};
+\node[box] at (2*3,2*0) {6};
+\node[box] at (2*2+1,2*-1+1) {7};
+
+\end{tikzpicture}
+\caption{Hexagons}
+\label{celllayout}
+\end{figure}
 
 \end{document}
